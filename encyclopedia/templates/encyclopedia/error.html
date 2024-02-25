@@ -1,0 +1,12 @@
+{% extends "encyclopedia/layout.html" %} {% load static %} {% block title %}
+Error {% endblock %} {% block body %}
+<h1>Error</h1>
+<hr />
+<p>{{ message }}</p>
+<img
+  src="{% static 'encyclopedia/grumpy-cat.jpg' %}"
+  class="img-fluid"
+  alt="grumpy-cat"
+/>
+
+{% endblock %}

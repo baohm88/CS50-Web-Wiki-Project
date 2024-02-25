@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="row">
+      <div class="sidebar col-lg-2 col-md-3">
+        <div class="container">
+          <img
+            src="{% static 'encyclopedia/Wikipedia_Logo_1.0.png' %}"
+            class="img-fluid"
+            alt="Wiki logo"
+          />
+        </div>
+
+        <h2 class="text-center">Wiki</h2>
+        <form action="{% url 'search' %}" method="post">
+          {% csrf_token %}
+          <div class="input-group m-2">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Search Encyclopedia"
+              name="q"
+            />
+            <button class="btn btn-secondary" type="submit">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-search"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+                />
+              </svg>
+            </button>
+          </div>
+        </form>
+        <div class="m-2">
+          <a href="{% url 'index' %}"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-house-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"
+              />
+              <path
+                d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293l6-6Z"
+              /></svg
+            >Home</a
+          >
+        </div>
+        <div class="m-2">
+          <a href="{% url 'new' %}"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-file-earmark-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2z"
+              /></svg
+            >Create New Page</a
+          >
+        </div>
+        <div class="m-2">
+          <a href="{% url 'rand_page' %}"
+            ><svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-shuffle"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5"
+              />
+              <path
+                d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"
+              /></svg
+            >Random Page</a
+          >
+        </div>
+        {% block nav %} {% endblock %}
+      </div>
+      <div class="main col-lg-10 col-md-9">{% block body %} {% endblock %}</div>
+    </div>
+  </body>
+</html>

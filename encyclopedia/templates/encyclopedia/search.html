@@ -1,0 +1,15 @@
+{% extends "encyclopedia/layout.html" %} {% block title %} Search {%endblock %}
+{% block body %}
+<h1>Search results for "<i>{{ title }}</i>"</h1>
+<hr />
+<ul>
+  {% for entry in recommended_entries %}
+  <li><a href="{% url 'entry' title=entry %}">{{ entry }}</a></li>
+  {% empty %}
+  <p>The entry you entered is not found.</p>
+  {% endfor %}
+</ul>
+<hr />
+<a href="{% url 'index' %}" class="btn btn-secondary btn-sm">Back to Home</a>
+
+{% endblock %}
